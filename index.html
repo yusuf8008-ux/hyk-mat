@@ -7,7 +7,19 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="topbar">
+    <!-- FULLSCREEN COVER -->
+<div id="coverScreen" class="cover-screen" role="button" tabindex="0" aria-label="Siteye gir">
+  <img class="cover-bg" src="cover.jpg" alt="HYK_MAT kapak gorseli" />
+  <div class="cover-overlay">
+    <div class="cover-center">
+      <div class="cover-brand">HYK_MAT</div>
+      <div class="cover-title">Matematik</div>
+      <div class="cover-sub">Dokun / Tikla ve siteye gir</div>
+    </div>
+  </div>
+</div>
+
+  <header class="topbar" id="siteHeader" hidden>
     <div class="container topbar-inner">
       <a class="brand" href="index.html">
         <span id="brandName">HYK_MAT</span>
@@ -29,16 +41,16 @@
       <div class="side-head">
         <div>
           <div style="font-weight:950;">HYK_MAT</div>
-          <div class="muted" style="font-weight:800; font-size:.9rem;">Drawer Menü</div>
+         
         </div>
-        <span class="tag">Mavi</span>
+     
       </div>
       <nav class="nav" id="nav"></nav>
       <div class="nav subnav" id="subnav"></div>
     </div>
   </aside>
 
-  <main class="container layout">
+  <main class="container layout" id="siteMain" hidden>
     <!-- Desktop Sidebar -->
     <aside class="sidebar">
       <div class="side-head">
@@ -46,14 +58,14 @@
           <div style="font-weight:950;">HYK_MAT</div>
           <div class="muted" style="font-weight:800; font-size:.9rem;">Matematik Portalı</div>
         </div>
-        <span class="tag">Mavi</span>
+       
       </div>
       <nav class="nav" id="nav"></nav>
       <div class="nav subnav" id="subnav"></div>
     </aside>
 
     <section>
-      <div class="card hero">
+      <div class="card hero" id="homeContent">
         <div>
           <h1>HYK_MAT – Matematik Artık Daha Kolay</h1>
           <p>5–12. sınıflar için konu anlatımı, örnek soru çözümü ve sınav hazırlık videoları.</p>
@@ -72,30 +84,30 @@
         <h2>Sınıflar</h2>
         <p class="muted">Bir sınıf seç ve konulara göre videoları gör.</p>
 
-        <div class="grid">
+        <div class="grid dashboard">
           <a class="tile" href="class.html?grade=5" data-search="5 sınıf">
-            <strong>5. Sınıf</strong><span>Temel konular</span>
+            <strong>5. Sınıf</strong>
           </a>
           <a class="tile" href="class.html?grade=6" data-search="6 sınıf">
-            <strong>6. Sınıf</strong><span>Oran, cebir</span>
+            <strong>6. Sınıf</strong>
           </a>
           <a class="tile" href="class.html?grade=7" data-search="7 sınıf">
-            <strong>7. Sınıf</strong><span>Rasyonel, denklemler</span>
+            <strong>7. Sınıf</strong>
           </a>
           <a class="tile" href="class.html?grade=8" data-search="8 sınıf lgs">
-            <strong>8. Sınıf</strong><span>LGS odaklı</span>
+            <strong>8. Sınıf</strong>
           </a>
           <a class="tile" href="class.html?grade=9" data-search="9 sınıf">
-            <strong>9. Sınıf</strong><span>Temel lise</span>
+            <strong>9. Sınıf</strong>
           </a>
           <a class="tile" href="class.html?grade=10" data-search="10 sınıf">
-            <strong>10. Sınıf</strong><span>Polinomlar</span>
+            <strong>10. Sınıf</strong>
           </a>
           <a class="tile" href="class.html?grade=11" data-search="11 sınıf">
-            <strong>11. Sınıf</strong><span>Trigonometri</span>
+            <strong>11. Sınıf</strong>
           </a>
           <a class="tile" href="class.html?grade=12" data-search="12 sınıf ayt">
-            <strong>12. Sınıf</strong><span>AYT – Limit/Türev/İntegral</span>
+            <strong>12. Sınıf</strong>
           </a>
         </div>
       </div>
@@ -106,7 +118,52 @@
       </div>
     </section>
   </main>
+<script>
+  const cover = document.getElementById("coverScreen");
+  const header = document.getElementById("siteHeader");
+  const main = document.getElementById("siteMain");
+
+  function showSiteDirectly(){
+    if (cover) cover.remove();
+    header.hidden = false;
+    main.hidden = false;
+  }
+
+  function enterSite(){
+    // kapagi bir daha gostermemek icin isaretle
+    sessionStorage.setItem("HYK_MAT_COVER_DONE", "1");
+
+    // cover fade out
+    cover.classList.add("hide");
+
+    // content show + fade in
+    setTimeout(() => {
+      cover.remove();
+      header.hidden = false;
+      main.hidden = false;
+
+      header.classList.add("fade-in");
+      main.classList.add("fade-in");
+
+      window.scrollTo(0, 0);
+    }, 260);
+  }
+
+  // Eger daha once girildiyse kapagi atla
+  if (sessionStorage.getItem("HYK_MAT_COVER_DONE") === "1") {
+    showSiteDirectly();
+  } else {
+    cover.addEventListener("click", enterSite);
+    cover.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") enterSite();
+    });
+  }
+</script>
+
+
 
   <script type="module" src="app.js"></script>
+  
 </body>
 </html>
+
