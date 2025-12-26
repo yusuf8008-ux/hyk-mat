@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HYK_MAT – İletişim</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">
+        <span id="brandName">HYK_MAT</span>
+        <small id="brandSub">5–12. Sınıflar</small>
+      </a>
+      <div class="search"><input id="globalSearch" placeholder="Sayfada ara" /></div>
+      <button class="icon-btn" id="openDrawer" aria-label="Menü">☰</button>
+    </div>
+  </header>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="drawer" id="drawer">
+    <div class="sidebar">
+      <div class="side-head"><div><div style="font-weight:950;">HYK_MAT</div><div class="muted" style="font-weight:800;font-size:.9rem;">Drawer Menü</div></div><span class="tag">Mavi</span></div>
+      <nav class="nav" id="nav"></nav>
+      <div class="nav subnav" id="subnav"></div>
+    </div>
+  </aside>
+
+  <main class="container layout">
+    <aside class="sidebar">
+      <div class="side-head"><div><div style="font-weight:950;">HYK_MAT</div><div class="muted" style="font-weight:800;font-size:.9rem;">İletişim</div></div><span class="tag">Mavi</span></div>
+      <nav class="nav" id="nav"></nav>
+      <div class="nav subnav" id="subnav"></div>
+    </aside>
+
+    <section>
+      <div class="card hero">
+        <div>
+          <h1>İletişim</h1>
+          <p class="muted">Video önerisi, soru veya iş birliği için mesaj bırak.</p>
+        </div>
+        <span class="badge">Form demo (backend yok)</span>
+      </div>
+
+      <div class="card section" data-search="iletişim form email youtube">
+        <h2>Mesaj Gönder</h2>
+        <form id="contactForm" style="display:grid; gap:10px; margin-top:10px;">
+          <input name="name" placeholder="Ad Soyad" required minlength="2" />
+          <input name="email" type="email" placeholder="E-posta" required />
+          <select name="grade" required>
+            <option value="">Sınıf Seç</option>
+            <option>5</option><option>6</option><option>7</option><option>8</option>
+            <option>9</option><option>10</option><option>11</option><option>12</option>
+          </select>
+          <input name="subject" placeholder="Konu" required minlength="3" />
+          <textarea name="message" rows="5" placeholder="Mesajın..." required minlength="10"></textarea>
+          <button class="btn primary" type="submit">Gönder</button>
+          <div class="muted" id="formMsg" role="status" aria-live="polite"></div>
+        </form>
+
+        <h2 style="margin-top:16px;">Hızlı Linkler</h2>
+        <p class="muted">
+          YouTube: <span>[YOUTUBE_LINK]</span><br/>
+          E-posta: <span>[EMAIL]</span><br/>
+          Instagram: <span>[INSTAGRAM]</span>
+        </p>
+      </div>
+
+      <div class="card footer">
+        <span>© 2025 HYK_MAT</span>
+        <a class="btn" href="index.html">Ana sayfa</a>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    const form = document.querySelector("#contactForm");
+    const msg = document.querySelector("#formMsg");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      // Demo: burada backend'e gönderme yapılır.
+      form.reset();
+      msg.textContent = "Mesaj alındı (demo) ✅";
+    });
+  </script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

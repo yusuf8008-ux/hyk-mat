@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HYK_MAT – Sınıf</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="index.html">
+        <span id="brandName">HYK_MAT</span>
+        <small id="brandSub">5–12. Sınıflar</small>
+      </a>
+
+      <div class="search">
+        <input id="globalSearch" placeholder="Bu sayfada ara (örn: türev, eşitsizlik)" />
+      </div>
+
+      <button class="icon-btn" id="openDrawer" aria-label="Menü">☰</button>
+    </div>
+  </header>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="drawer" id="drawer">
+    <div class="sidebar">
+      <div class="side-head">
+        <div>
+          <div style="font-weight:950;">HYK_MAT</div>
+          <div class="muted" style="font-weight:800; font-size:.9rem;">Drawer Menü</div>
+        </div>
+        <span class="tag">Mavi</span>
+      </div>
+      <nav class="nav" id="nav"></nav>
+      <div class="nav subnav" id="subnav"></div>
+    </div>
+  </aside>
+
+  <main class="container layout">
+    <aside class="sidebar">
+      <div class="side-head">
+        <div>
+          <div style="font-weight:950;">HYK_MAT</div>
+          <div class="muted" style="font-weight:800; font-size:.9rem;">Sınıf İçerikleri</div>
+        </div>
+        <span class="tag">Mavi</span>
+      </div>
+      <nav class="nav" id="nav"></nav>
+      <div class="nav subnav" id="subnav"></div>
+    </aside>
+
+    <section>
+      <div class="card hero">
+        <div>
+          <h1 id="classTitle">Sınıf</h1>
+          <p id="classDesc" class="muted">Konu başlıkları ve videolar</p>
+          <div id="playlistRow" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;"></div>
+        </div>
+        <div>
+          <span class="badge" id="gradeBadge">MEB Uyumlu</span>
+        </div>
+      </div>
+
+      <div class="section card">
+        <h2>Konu Başlıkları</h2>
+        <div class="list" id="sections"></div>
+      </div>
+
+      <div class="section card">
+        <h2>Videolar</h2>
+        <p class="muted">YouTube linklerini <b>data.js</b> içinden ekleyebilirsin.</p>
+        <div class="video-grid" id="videos"></div>
+      </div>
+
+      <div class="card footer">
+        <span>© 2025 HYK_MAT</span>
+        <a class="btn" href="contact.html">Video öner / iletişim</a>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="class_page.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
