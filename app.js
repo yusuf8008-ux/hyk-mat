@@ -19,19 +19,38 @@ function buildSidebarNav(activePath) {
 
   // Top links
   nav.innerHTML = `
-    <a href="index.html" class="${activePath.includes("index.html") ? "active" : ""}">🏠 Ana Sayfa</a>
-    <button id="toggleGrades" aria-expanded="${isClassPage ? "true" : "false"}">
-      📚 Sınıflar <span>▾</span>
-    </button>
-    <a href="about.html" class="${activePath.includes("about.html") ? "active" : ""}">👤 Hakkımda</a>
-    <a href="contact.html" class="${activePath.includes("contact.html") ? "active" : ""}">✉️ İletişim</a>
-  `;
+  <a href="index.html" class="${activePath.includes("index.html") ? "active" : ""}">Ana Sayfa</a>
+  <button id="toggleGrades" aria-expanded="${isClassPage ? "true" : "false"}">
+    Siniflar <span style="margin-left:auto;">▾</span>
+  </button>
+  <a href="about.html" class="${activePath.includes("about.html") ? "active" : ""}">Hakkimda</a>
+  <a href="contact.html" class="${activePath.includes("contact.html") ? "active" : ""}">Iletisim</a>
+`;
+
 
   // Grade links
-  subnav.innerHTML = GRADES.map(g => {
-    const isActive = isClassPage && new URLSearchParams(location.search).get("grade") === String(g);
-    return `<a href="class.html?grade=${g}" class="${isActive ? "active" : ""}">${g}. Sınıf</a>`;
-  }).join("");
+const currentGrade = new URLSearchParams(location.search).get("grade");
+
+const makeGradeLink = (g) => {
+  const isActive = isClassPage && currentGrade === String(g);
+  return `<a href="class.html?grade=${g}" class="${isActive ? "active" : ""}">${g}. Sinif</a>`;
+};
+
+const middle = [5,6,7,8];
+const high = [9,10,11,12];
+
+subnav.innerHTML = `
+  <div class="nav-group">
+    <div class="nav-group-title">Ortaokul</div>
+    ${middle.map(makeGradeLink).join("")}
+  </div>
+
+  <div class="nav-group">
+    <div class="nav-group-title">Lise</div>
+    ${high.map(makeGradeLink).join("")}
+  </div>
+`;
+
 
   if (isClassPage) subnav.classList.add("open");
 
